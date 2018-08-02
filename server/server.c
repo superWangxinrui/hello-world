@@ -407,7 +407,7 @@ void * ThreadEntry(void * arg){
 }
 //服务器启动
 void HttpServerStart(const char*ip,short port){
-int listen_sock=socket(AF_INET,SOCK_STREAM,0);
+int listen_sock=socket(AF_INET,SOCK_STREAM,0);//创建sock文件描述符，AF_INET代表ipv4,SOCK_STREAM表示TCP，面向字节流
 if(listen_sock<0){
 	perror("socket");
 	return;
@@ -451,6 +451,7 @@ int main(int argc,char*argv[]){
 		printf("Usage ./server [ip] [port]\n");
 		return 1;
 	}
+      //服务器启动，将ip地址（字符串）和端口号（int）传过去
 	HttpServerStart(argv[1],atoi(argv[2]));
 }
 
